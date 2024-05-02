@@ -1,0 +1,52 @@
+#Importing Libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import preprocessing
+
+
+#Loading Dataset into DataFrame
+df = pd.read_csv("Academic.csv")
+df
+
+
+#Preprocessing
+df.isnull()
+
+
+# Handling NaN values
+mean_value = df['Che_marks'].mean()
+df['Che_marks'].fillna(mean_value, inplace=True)
+df
+
+
+#preprocessing
+df.describe()
+
+
+#Preprocessing
+df.shape
+
+
+#preprocessing
+df.dtypes
+
+
+#Data Formatting
+df['Name'] = df['Name'].astype('string')
+df.dtypes
+
+
+#Normalization
+columns_to_normalize = ['SME_marks']
+for column in columns_to_normalize:
+    max_value = df[column].max()
+    df[column] = df[column] / max_value
+    
+    
+df[["SME_marks"]].head()
+
+
+#Caegorial into Quantitative Data
+df['Gender']=df['Gender'].map({'M':0,'F':1}).astype(float)
+df
